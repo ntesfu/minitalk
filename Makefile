@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ntesfu <ntesfu@student.42abudhabi.ae>      +#+  +:+       +#+         #
+#    By: ntesfu <ntesfu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 18:24:56 by ntesfu            #+#    #+#              #
-#    Updated: 2022/01/27 22:16:29 by ntesfu           ###   ########.fr        #
+#    Updated: 2022/10/27 15:17:04 by ntesfu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,10 +50,12 @@ $(CLIENT): $(OBJ_CLIENT)
 	@$(CC) $(CFLAGS) $(SRC_CLIENT) -L$(FT_PRINTF_DIR) -lftprintf -o $(CLIENT)
 	@echo $(BRIGHT_GREEN)"$(CLIENT) has been created!"$(RESET)
 
-clean:		@make clean -C $(FT_PRINTF_DIR)
+clean:		
+			cd $(FT_PRINTF_DIR) && ${MAKE} clean
 			${RM} $(OBJ_CLIENT) $(OBJ_SERVER)
 
-fclean:		@make fclean -C $(FT_PRINTF_DIR)
+fclean:		clean
+			cd $(FT_PRINTF_DIR) && ${MAKE} fclean
 			${RM} $(CLIENT) $(SERVER)
 
 re:			fclean all
